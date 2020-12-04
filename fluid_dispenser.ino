@@ -1,17 +1,24 @@
-//INFRA_in and RELAY_out denote the pins connected to the infrared sensor and
-//the relay module respectively.
-//will add values here according to which pins I connect each to
-#define INFRA_in
-#define RELAY_out
-
-//initialization, INFRA_in is HIGH by default, goes LOW on detecting obstacle
-//RELAY_out will activate the pump when made HIGH
-void setup() {
-  pinMode(INFRA_in, INPUT);
-  pinMode(RELAY_out, OUTPUT);
+int iterations=0;
+void setup()
+{
+  pinMode(13, OUTPUT);
+  pinMode(12, INPUT);
   Serial.begin(9600);
 }
 
-void loop() {
-//add your  l o g i n c  here
+void loop()
+{
+  if(digitalRead(12)==LOW){
+    iterations=iterations+1;
+  	
+    if(iterations>=5){
+    	digitalWrite(13, HIGH);	
+    }else{
+    	digitalWrite(13, LOW);
+    }
+  }else{
+    iterations=0;
+  	digitalWrite(13, HIGH);
+  }
+  delay(1000); // Wait for 1000 millisecond(s)
 }
