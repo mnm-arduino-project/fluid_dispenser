@@ -1,24 +1,34 @@
-int iterations=0;
+#define INFRA_in 3
+#define RELAY_out 13
+
 void setup()
 {
-  pinMode(13, OUTPUT);
-  pinMode(12, INPUT);
+  pinMode(INFRA_in, INPUT);
+  pinMode(RELAY_out, OUTPUT);
   Serial.begin(9600);
 }
 
+int iterations = 0;
+
 void loop()
 {
-  if(digitalRead(12)==LOW){
-    iterations=iterations+1;
-  	
-    if(iterations>=5){
-    	digitalWrite(13, HIGH);	
-    }else{
-    	digitalWrite(13, LOW);
+  if (digitalRead(INFRA_in) == LOW)
+  {
+    ++iterations;
+
+    if (iterations >= 5)
+    {
+      digitalWrite(RELAY_out, HIGH);
     }
-  }else{
-    iterations=0;
-  	digitalWrite(13, HIGH);
+    else
+    {
+      digitalWrite(RELAY_out, LOW);
+    }
   }
-  delay(1000); // Wait for 1000 millisecond(s)
+  else
+  {
+    iterations = 0;
+    digitalWrite(RELAY_out, HIGH);
+  }
+  delay(1000);
 }
