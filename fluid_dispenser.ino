@@ -16,7 +16,7 @@ void loop()
   {
     ++iterations;
 
-    if (iterations >= 5)
+    if (iterations >= 2)
     {
       digitalWrite(RELAY_out, HIGH);
     }
