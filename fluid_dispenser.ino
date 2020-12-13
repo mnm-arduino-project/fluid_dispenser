@@ -30,5 +30,5 @@ void loop()
     iterations = 0;
     digitalWrite(RELAY_out, HIGH);
   }
-  delay(1000);
+  delay(500);
 }
